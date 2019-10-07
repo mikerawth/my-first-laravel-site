@@ -10,6 +10,7 @@
 
 @section('content')
 
-<h1>Here we go!!!</h1>
+    <h1>My First {{ $foo }} Website!</h1>
+
 
 @endsection
