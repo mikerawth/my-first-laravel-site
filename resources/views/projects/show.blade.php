@@ -5,5 +5,8 @@
 
     <p>{{ $project->description }}</p>
 
-<a href="/projects/{{ $project->id }}/edit">Edit</a>
+    <div class="d-flex flex-column">
+        <a href="/projects/{{ $project->id }}/edit">Edit</a>
+        <a href="/projects">Back</a>
+    </div>
 @endsection
