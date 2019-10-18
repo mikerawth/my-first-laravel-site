@@ -13,4 +13,9 @@ class Project extends Model
 
     // $guarded = [] is less safe.
     // protected $guarded = [];
+
+    public function tasks()
+    {
+        return $this->hasMany(Task::class);
+    }
 }
