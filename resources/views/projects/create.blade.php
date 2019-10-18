@@ -1,29 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Create A New Project!</h1>
+@extends('layout')
 
-    <form method="POST" action="/projects">
+@section('content')
+<h1>Create A New Project!</h1>
 
-         {{ csrf_field() }}
+<form method="POST" action="/projects">
 
-        <div>
-            <input type="text" name="title" placeholder="Project Title">
-        </div>
+     {{ csrf_field() }}
 
-        <div>
-            <textarea name="description" placeholder="Project Description" id="" cols="30" rows="10"></textarea>
-        </div>
+    <div class="form-group">
+        <input class="form-control {{ $errors->has('title') ? 'is-invalid' : ''}}" type="text" name="title" placeholder="Project Title" value="{{ old('title')}}" required>
+    </div>
 
-        <div>
-            <button type="submit">Submit Project</button>
-        </div>
-    </form>
-</body>
-</html>
+    <div class="form-group">
+        <textarea class="form-control {{ $errors->has('description') ? 'is-invalid' : ''}}" name="description" placeholder="Project Description" id="" cols="30" rows="10" required>
+            {{ old('description')}}
+        </textarea>
+    </div>
+
+    <div class="form-group">
+        <button class="btn btn-primary" type="submit">Submit Project</button>
+    </div>
+
+    @if ($errors->any())
+    <div class="alert alert-danger" role="alert">
+        @foreach ($errors->all() as $error)
+            <div>{{ $error }}</div>
+        @endforeach
+    </div>
+    @endif
+</form>
+@endsection

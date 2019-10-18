@@ -36,9 +36,15 @@ class ProjectsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
-        Project::create(request(['title', 'description']));
+        // name of $attributes can be anything, such as $validated
+        $attributes = request()->validate([
+            "title" => ["required", "min:3"],
+            "description" => ["required", "max:255"]
+        ]);
+
+        Project::create($attributes);
 
         return redirect('/projects');
     }
