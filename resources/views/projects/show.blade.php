@@ -25,5 +25,14 @@
         </div>
     @endif
 
+    <form method="POST" action="/projects/{{ $project->id }}/tasks">
+        @csrf
+        <label for="description">New Task</label>
+        <input type="text" name="description" required>
+        <button type="submit">Add New Task</button>
+    </form>
+
+    @include('errors')
+
     <a href="/projects">Back</a>
 @endsection
